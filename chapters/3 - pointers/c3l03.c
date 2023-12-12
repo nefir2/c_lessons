@@ -41,8 +41,13 @@ int main(void) {
 	printf("ptr1 = %p\n*ptr1 = %d\n", (void*)ptr1, *ptr1);
 	ptr1--;
 	z = (*ptr1)++; //*ptr1, z = *ptr1, *ptr1 = *ptr1 + 1
-	printf("z = %d\nptr1 = %p\n*ptr1 = %d", z, (void*)ptr1, *ptr1);
-
-
+	printf("z = %d\nptr1 = %p\n*ptr1 = %d\n", z, (void*)ptr1, *ptr1);
+	
+	z = ++*ptr1; //*ptr1, *ptr1 = *ptr1 + 1, z = *ptr1
+	printf("z = %d\nptr1 = %p\n*ptr1 = %d\n", z, (void*)ptr1, *ptr1);
+	
+	z = *++ptr1; //ptr1 = ptr1 + 1(prefix increment), *ptr1, z = *ptr1
+	printf("z = %d\nptr1 = %p\n*ptr1 = %d\n\n", z, (void*)ptr1, *ptr1);
+	
 	return 0;
 }
