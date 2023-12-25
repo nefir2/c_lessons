@@ -6,8 +6,10 @@ void change_PI(float);
 void print_PI();
 void smfnc();
 void write_title(char*);
+int inside_value();
+int static_inside_value();
 
-const float PI = 3.14f;
+float PI = 3.14f; //const -> core dump
 
 int main(void) {
 	printf("start in main\n");
@@ -26,6 +28,15 @@ int main(void) {
 
 	write_title("smfnc:");
 	smfnc();
+
+	write_title("static values:");
+	for (int i = 0; i < 5; i++) printf("%3i ", inside_value());
+	printf("\n");
+	for (int i = 0; i < 5; i++) printf("%3i ", static_inside_value());
+	printf("\n");
+
+	register int x = 5; //for important variables, to fastest access to them.
+	printf("\n\n");
 	printf("end in main\n");
 	return 0;
 }
@@ -82,4 +93,14 @@ void smfnc() {
 
 void write_title(char* str) {
 	printf("\n\n\t%s\n\n", str);
+}
+
+int inside_value() {
+	int i = 0; //initializing
+	return i++; //return the value, i++, and clear memory.
+}
+
+int static_inside_value() {
+	static int i = 0;
+	return i++; //return value, i++, no any clearing the value.
 }
