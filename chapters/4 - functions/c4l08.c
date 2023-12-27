@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "stdactions.h"
-
 void any_first();
 void any_second();
 
