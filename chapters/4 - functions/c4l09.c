@@ -1,24 +1,73 @@
 #include <stdio.h>
 
-#include "stdactions.h"
+int plus(int, int);
+int minus(int , int);
+int star(int, int);
+int slash(int, int);
+int percent(int, int);
+
+double add(double, double);
+double subtract(double, double);
+double product(double, double);
+double division(double, double);
+
 int operation(int (*)(int, int), int, int);
 double s_operation(double (*)(double, double), double, double);
 
-//int (*operations[5]) (int, int) = { plus, minus, star, slash, percent };
-//double (*s_operations[4]) (double, double) = { add, subtract, product, division };
-//const int operations_length = 5; //sizeof(operations) / sizeof(*operations);
-//const int s_operations_length = 4; //sizeof(s_operations) / sizeof(*s_operations);
+void check_to(char*, int (*)(int), int[], int);
+int is_odd(int);
+int is_even(int);
+int is_negative(int);
+int is_positive(int);
+void show_array(char*, int[], int);
 
 int main(void) {
-	int left = 246;
-	int right = 874;
-	double s_left = 42326.5;
-	double s_right = 2463.234;
-	for (int i = 0; i < operations_length; i++) printf("operation #%d:\t%d operation %d: %d\n", i, left, right, operation(operations[i], left, right));
+	int first = 2463;
+	int second = 34723457;
+	double s_first = 3424647247.234736;
+	double s_second = 357.5646354627;
+	//int res = operation(plus, first, second);
+	//int s_res = s_operation(division, s_first, s_second);
+	printf("plus(%d, %d): %d\ndivision(%lf, %lf): %lf\n", first, second, operation(plus, first, second), s_first, s_second, s_operation(division, s_first, s_second));
+
+	int nums[18] = { 3, 456, -35673, 23, 3567, -47, 456, 463, 3567, -234, 357, -357, -246, -2474, 246, 2467276, -8358, 2375 };
+	int nums_size = sizeof(nums) / sizeof(*nums);
+	show_array("whole array: ", nums, nums_size);
 	printf("\n");
-	for (int i = 0; i < s_operations_length; i++) printf("s_operation #%d:\t%lf operation %lf: %lf\n", i, s_left, s_right, s_operation(s_operations[i], s_left, s_right));
+	check_to("is even: ", is_even, nums, nums_size);
+	check_to("is odd: ", is_odd, nums, nums_size);
+	check_to("is positive: ", is_positive, nums, nums_size);
+	check_to("is negative: ", is_negative, nums, nums_size);
 	return 0;
 }
 
-int operation(int (*func)(int, int), int left, int right) { return func(left, right); }
-double s_operation(double (*s_func)(double, double), double left, double right) { return s_func(left, right); }
+int plus(int left, int right) { return left + right; }
+int minus(int left, int right) { return left - right; }
+int star(int left, int right) { return left * right; }
+int slash(int left, int right) { return left / right; }
+int percent(int left, int right) { return left % right; }
+
+double add(double left, double right) { return left + right; }
+double subtract(double left, double right) { return left - right; }
+double product(double left, double right) { return left * right; }
+double division(double left, double right) { return left / right; }
+
+int operation(int (*oper)(int, int), int left, int right) { return oper(left, right); }
+double s_operation(double (*oper)(double, double), double left, double right) { return oper(left, right); }
+
+void check_to(char* message, int (*condition)(int), int array[], int length) {
+	printf("%s\t", message);
+	for (int i = 0; i < length; i++) if (condition(array[i])) printf("%8d ", array[i]);
+	printf("\n");
+}
+
+int is_odd(int num) { return !(num % 2 == 0); }
+int is_even(int num) { return num % 2 == 0; } //!is_odd(num)
+int is_negative(int num) { return num < 0; }
+int is_positive(int num) { return num > 0; } //!is_negative(num)
+
+void show_array(char* message, int array[], int length) {
+	printf("%s\t", message);
+	for (int i = 0; i < length; i++) printf("%8d ", array[i]);
+	printf("\n");
+}

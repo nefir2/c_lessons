@@ -1,6 +1,16 @@
 #include <stdio.h>
 
-#include "stdactions.h"
+int plus(int, int);
+int minus(int , int);
+int star(int, int);
+int slash(int, int);
+int percent(int, int);
+
+double add(double, double);
+double subtract(double, double);
+double product(double, double);
+double division(double, double);
+
 void any_first();
 void any_second();
 
@@ -44,3 +54,14 @@ void any_first() {
 void any_second() {
 	printf("second method\n");
 }
+
+int plus(int left, int right) { return left + right; }
+int minus(int left, int right) { return left - right; }
+int star(int left, int right) { return left * right; }
+int slash(int left, int right) { return left / right; }
+int percent(int left, int right) { return left % right; }
+
+double add(double left, double right) { return left + right; }
+double subtract(double left, double right) { return left - right; }
+double product(double left, double right) { return left * right; }
+double division(double left, double right) { return left / right; }
