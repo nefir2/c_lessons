@@ -11,7 +11,7 @@ void main(void) {
 
 	int x = 5;
 	for ( ; x > -10; ) {
-		printf("%d >> %d -1 = %d\n", i, i, i >> (i - 1));
+		printf("%d >> %d -1 = %d\n", x, x, x >> (x - 1));
 		x--;
 	}
 	printf("\n");

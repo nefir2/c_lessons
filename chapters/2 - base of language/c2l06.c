@@ -14,7 +14,7 @@ int main(void) {
 	float g = 17.0 / 2;
 	printf("25 / 3 = %%f: %f\n17.0 / 2 = %%f: %f\n\n", f, g);
 
-	printf("18 % 3: %d\n\n", 18 % 3);
+	printf("18 %% 3: %d\n\n", 18 % 3);
 	
 	printf("1 + 2 * 3: %d\n", 1 + 2 * 3);
 	printf("(1 + 2) * 3: %d\n\n", (1 + 2) * 3);

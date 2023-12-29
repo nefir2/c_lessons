@@ -21,6 +21,14 @@ int is_negative(int);
 int is_positive(int);
 void show_array(char*, int[], int);
 
+int (*select(int))(int, int);
+double (*s_select(int))(double, double);
+
+
+
+static int zero();
+int (*func(void))(void);
+
 int main(void) {
 	int first = 2463;
 	int second = 34723457;
@@ -38,6 +46,18 @@ int main(void) {
 	check_to("is odd: ", is_odd, nums, nums_size);
 	check_to("is positive: ", is_positive, nums, nums_size);
 	check_to("is negative: ", is_negative, nums, nums_size);
+	printf("\n");
+
+	int (*choice)(int, int);
+	choice = select(1);
+	printf("selected plus. plus(%d, %d): %d", choice(first, second));
+	double (*s_choice)(double, double);
+	s_choice = s_select(3);
+	printf("selected ???. ???(%lf, %lf): %lf", s_first, s_second, s_choice(s_first, s_second));
+
+	////untested
+	//int (*actions[])() = {action1, action2, action3};
+
 	return 0;
 }
 
@@ -70,4 +90,32 @@ void show_array(char* message, int array[], int length) {
 	printf("%s\t", message);
 	for (int i = 0; i < length; i++) printf("%8d ", array[i]);
 	printf("\n");
+}
+
+int (*select(int choice))(int, int) { //returns a pointer to function with type "int(*)(int, int)"
+	switch (choice) {
+		case 2: return minus;
+		case 3: return star;
+		case 4: return slash;
+		case 5: return percent;
+		default: return plus;
+	}
+}
+
+double (*s_select(int choice))(double, double) { //typeof_returnable_function (*name_of_function(arguments))(arguments_for_returnable_function) //int (*func(void))(void)
+	switch (choice) {
+		case 2: return subtract;
+		case 3: return product;
+		case 4: return division;
+		default: return add;
+	}
+}
+
+
+//untested
+static int zero() { //hidden function
+	return 1;
+}
+int (*func(void))(void) { //returns hidden function
+	return zero;
 }
